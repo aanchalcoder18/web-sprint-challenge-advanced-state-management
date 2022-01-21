@@ -7,11 +7,13 @@ import Header from './components/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 
+import { fetchSmurfs } from "./actions";
 import { connect } from "react-redux";
 
 
 const App = (props)=> {
   console.log(props);
+  
   return (
     <div className="App">
       <Header />
