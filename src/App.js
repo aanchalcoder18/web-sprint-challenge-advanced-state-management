@@ -7,7 +7,11 @@ import Header from './components/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 
-const App = ()=> {
+import { connect } from "react-redux";
+
+
+const App = (props)=> {
+  console.log(props);
   return (
     <div className="App">
       <Header />
@@ -19,6 +23,7 @@ const App = ()=> {
     </div>
   );
 }
+
 
 export default App;
 
