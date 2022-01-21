@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 
 import AddForm from './components/AddForm';
 import SmurfList from './components/SmurfList';
@@ -12,8 +12,12 @@ import { connect } from "react-redux";
 
 
 const App = (props)=> {
-  console.log(props);
-  
+  const { fetchSmurfs } = props;
+
+  useEffect(() => {
+    fetchSmurfs();
+  }, [fetchSmurfs]);
+
   return (
     <div className="App">
       <Header />
@@ -27,8 +31,8 @@ const App = (props)=> {
 }
 
 
-export default App;
+export default connect(null, { fetchSmurfs })(App);
 
 //Task List:
-//1. Connect the fetchSmurfs actions to the App component.
-//2. Call the fetchSmurfs action when the component mounts.
+//1. Connect the fetchSmurfs actions to the App component. done
+//2. Call the fetchSmurfs action when the component mounts. done

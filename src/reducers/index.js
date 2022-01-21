@@ -1,39 +1,49 @@
-import { FETCH_SMURF_START, FETCH_SMURF_SUCCESS, FETCH_SMURF_FAILED, FETCH_ADD_NEW_SMURF, FETCH_ERROR_MESSAGE } from "../actions";
+import { FETCH_START, FETCH_SUCCESS, FETCH_FAIL, SMURF_ADD, ERROR } from '../actions/index';
+
 export const initialState = {
-    smurfs: [],
-    isLoading:false,
-    error: ""
+    smurf: [{
+        id: "",
+        name: '',
+        position: '',
+        nickname: '',
+        description: ''
+    }],
+    isLoading: false,
+    error: ''
+
 }
 
-const reducer = (state, action)=>{
-    switch(action.type){
-        case (FETCH_SMURF_START):
-            return ({
-                ...state, 
-                isLoading: true
-            })
-        case (FETCH_SMURF_SUCCESS):
+const reducer = (state = initialState, action) => {
+    switch (action.type) {
+        case (FETCH_START):
             return ({
                 ...state,
-                smurfs: action.payload,
-                isLoading: false
-            })
-        case (FETCH_SMURF_FAILED):
-            return ({
-                ...state,
-                isLoading: false,
-                error: action.payload
-            })
-        case (FETCH_ADD_NEW_SMURF):
-            return ({
-                ...state,
-                smurfs: [...state.smurfs, action.payload],
-                isLoading: false
-            })
-        case (FETCH_ERROR_MESSAGE):
-            return ({
-                ...state,
+                smurf: [],
                 isLoading: true,
+                error: ''
+            })
+        case (FETCH_SUCCESS):
+            return ({
+                ...state,
+                smurf: action.payload,
+                isLoading: false,
+                errors: '',
+            })
+        case (FETCH_FAIL):
+            return ({
+                ...state,
+                smurf: [],
+                isLoading: false,
+                error: action.payload,
+            })
+        case (SMURF_ADD):
+            return ({
+                ...state,
+                smurf: [...state.smurf, action.payload.data]
+            })
+        case (ERROR):
+            return ({
+                ...state,
                 error: action.payload
             })
         default:

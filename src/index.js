@@ -7,11 +7,11 @@ import App from "./App";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
-import logger from "redux-logger";
+// import logger from "redux-logger";
 import reducer from "./reducers";
 
 
-const store = createStore(reducer, applyMiddleware(thunk, logger));
+const store = createStore(reducer, applyMiddleware(thunk));
 
 const { worker } = require('./mocks/browser');
 worker.start();
